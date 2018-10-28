@@ -1,3 +1,8 @@
 ﻿.error-message {
     color: red;
 }
+
+.required:after {
+    color: red;
+    content: ' *';
+}
