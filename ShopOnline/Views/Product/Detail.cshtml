@@ -1,0 +1,15 @@
+﻿@using ShopOnline.Models.Products
+@model ProductItemModel
+
+<div class="row product-container">
+    <div class="col-md-3 col-md-offset-1">
+        <img src="@Model.ImageURL"/>
+    </div>
+    <div class="col-md-6 col-md-offset-1">
+        <h2>@Model.Title</h2>
+        <p>@Model.Description</p>
+        <p>Price: @Model.Price</p>
+        <button class="btn btn-primary">Add to cart</button>
+    </div>
+</div>
+

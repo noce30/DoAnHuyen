@@ -1,0 +1,17 @@
+﻿@using ShopOnline.Models
+@model ProductCategories
+
+<div class="row">
+    <div class="col-md-3">
+        <img style="width: 100%;height: 100%;" src="~/Content/Images/Bàn-cắt-giấy-A4.jpg" />
+    </div>
+    <div class="col-md-9">
+        @if (Model.Products.Count > 0)
+        {
+            foreach (var item in Model.Products)
+            {
+                @Html.Action("_ProductItem", item);
+            }
+        }
+    </div>
+</div>

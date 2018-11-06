@@ -1,7 +1,25 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@using ShopOnline.Models
+@model HomeModel
 
-<h2>Index</h2>
-
+<div class="main">
+    <div class="content product-container">
+        @foreach (var item in Model.Categories)
+        {
+            <div class="content_top">
+                <div class="heading">
+                    <h3>@item.Category.Name</h3>
+                </div>
+                <div class="clear"></div>
+            </div>
+            if (item.Products.Count > 0)
+            {
+                <div class="row">
+                    @foreach (var i in item.Products)
+                    {
+                        @Html.Action("_ProductItem", "Product", i);
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

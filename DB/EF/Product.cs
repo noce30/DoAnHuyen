@@ -37,7 +37,7 @@ namespace DB.EF
 
         public int? Quanlity { get; set; }
 
-        public long? CategoryID { get; set; }
+        public long CategoryID { get; set; }
 
         [Column(TypeName = "ntext")]
         public string Detail { get; set; }
@@ -60,7 +60,7 @@ namespace DB.EF
         [StringLength(250)]
         public string MetaDescriptions { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public DateTime? TopHot { get; set; }
 

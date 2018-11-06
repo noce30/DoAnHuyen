@@ -1,0 +1,53 @@
+﻿@using ShopOnline.Models.Products
+@model ProductItemModel
+
+<style>
+    .grid_1_of_4:first-child {
+        margin-left: 0;
+    }
+
+    .images_1_of_4 {
+    width: 20.8%;
+    padding: 1.5%;
+    text-align: center;
+    position: relative;
+}
+    .grid_1_of_4 {
+    display: block;
+    float: left;
+    margin: 1% 0 1% 1.6%;
+    box-shadow: 0px 0px 3px rgb(150, 150, 150);
+    -webkit-box-shadow: 0px 0px 3px rgb(150, 150, 150);
+    -moz-box-shadow: 0px 0px 3px rgb(150, 150, 150);
+    -o-box-shadow: 0px 0px 3px rgb(150, 150, 150);
+}
+
+    .price-details {
+    margin-top: 10px;
+    border-top: 1px solid #CD1F25;
+}
+
+    .price-number {
+    float: left;
+    padding-top: 5px;
+}
+
+    .add-cart {
+    float: right;
+    display: inline-block;
+}
+</style>
+
+<div class="grid_1_of_4 images_1_of_4">
+    <a href="@Url.Action("Detail", new { productId = Model.Id })"><img style="width:212px; height:212px" src="@Model.ImageURL" alt=""></a>
+    <h2>@Model.Title </h2>
+    <div class="price-details">
+        <div class="price-number">
+            <p><span class="rupees">$@Model.Price</span></p>
+        </div>
+        <div class="add-cart">
+            <h4><a href="preview.html">Add to Cart</a></h4>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

@@ -1,4 +1,12 @@
-﻿<header class="header1">
+﻿@using DB.DAO;
+@{ 
+    ProductDao productDao = new ProductDao();
+    ProductCategoryDao productCategoryDao = new ProductCategoryDao();
+
+    var listCategories = productCategoryDao.GetAllActiveProductCategories();
+}
+
+<header class="header1">
     <!-- Header desktop -->
     <div class="container-menu-header">
         <div class="topbar">
@@ -24,7 +32,7 @@
         <div class="wrap_header">
             <!-- Logo -->
             <a href="index.html" class="logo">
-                <img src="images/icons/logo.png" alt="IMG-LOGO">
+                <img src="~/Content/Images/logo.jpg" alt="IMG-LOGO">
             </a>
 
             <!-- Menu -->
@@ -33,33 +41,21 @@
                     <ul class="main_menu">
                         <li>
                             <a href="@Url.Action("Index","Home")">Home</a>
-                            @*<ul class="sub_menu">
-                                <li><a href="index.html">Homepage V1</a></li>
-                                <li><a href="home-02.html">Homepage V2</a></li>
-                                <li><a href="home-03.html">Homepage V3</a></li>
-                            </ul>*@
                         </li>
 
                         <li>
-                            <a href="product.html">Shop</a>
+                            <a href="product.html">About</a>
                         </li>
 
                         <li class="sale-noti">
-                            <a href="product.html">Sale</a>
+                            <a href="product.html">Product</a>
+                            <ul class="sub_menu">
+                                @foreach (var item in listCategories)
+                                {
+                                    <li><a href="@Url.Action("ProductCategory", "Product", new {productCategoryId = item.ID })">@item.Name</a></li>
+                                }
+                            </ul>
                         </li>
-
-                        <li>
-                            <a href="cart.html">Features</a>
-                        </li>
-
-                        <li>
-                            <a href="blog.html">Blog</a>
-                        </li>
-
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-
                         <li>
                             <a href="@Url.Action("Index","Contact")">Contact</a>
                         </li>
