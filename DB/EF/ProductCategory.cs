@@ -43,5 +43,8 @@ namespace DB.EF
         public bool Status { get; set; }
 
         public bool? ShowOnHome { get; set; }
+
+        [StringLength(250)]
+        public string ImagePath { get; set; }
     }
 }

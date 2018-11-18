@@ -15,6 +15,6 @@ D:\KI_5\LT_APS.Net\DoAn\DoAn-APS.NET\DB\bin\Debug\EntityFramework.dll
 D:\KI_5\LT_APS.Net\DoAn\DoAn-APS.NET\DB\bin\Debug\EntityFramework.SqlServer.dll
 D:\KI_5\LT_APS.Net\DoAn\DoAn-APS.NET\DB\bin\Debug\EntityFramework.xml
 D:\KI_5\LT_APS.Net\DoAn\DoAn-APS.NET\DB\bin\Debug\EntityFramework.SqlServer.xml
-D:\KI_5\LT_APS.Net\DoAn\DoAn-APS.NET\DB\obj\Debug\DB.csprojResolveAssemblyReference.cache
 D:\KI_5\LT_APS.Net\DoAn\DoAn-APS.NET\DB\obj\Debug\DB.dll
 D:\KI_5\LT_APS.Net\DoAn\DoAn-APS.NET\DB\obj\Debug\DB.pdb
+D:\KI_5\LT_APS.Net\DoAn\DoAn-APS.NET\DB\obj\Debug\DB.csprojResolveAssemblyReference.cache

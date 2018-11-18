@@ -1,0 +1,34 @@
+﻿@using ShopOnline.Areas.Admin.Models
+@model ProductCategoryModel
+
+<div class="panel panel-primary">
+    <div class="panel panel-heading">
+        <h4>Chỉnh sửa danh mục sản phẩm</h4>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("EditCategory", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(x => x.Id)
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Tên Sản phẩm</label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Chọn hình</label>
+                        <input type="file" name="file" id="file" accept="image/x-png,image/gif,image/jpeg">
+                        <img src="@Model.ImagePath" class="img-fluid" style="margin-top: 1rem;"/>
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Trạng thái</label>
+                        @Html.CheckBoxFor(x => x.Status)
+                    </div>
+                    <div class="form-group has-success">
+                        <input type="submit" value="Save" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

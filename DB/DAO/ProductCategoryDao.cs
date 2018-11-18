@@ -1,6 +1,7 @@
 ﻿using DB.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,30 @@ namespace DB.DAO
         {
             var result = db.ProductCategories.FirstOrDefault(x => x.ID == id);
             return result;
+        }
+
+        public List<ProductCategory> GetAllProductCategories(string KeySearch = "")
+        {
+            //lay tat ca product category tu db (ToList: lay ra List)
+            var result = db.ProductCategories.AsQueryable();
+            if (KeySearch != "")
+            {
+                result = result.Where(x => x.Name.ToLower().Contains(KeySearch.ToLower()));
+            }
+
+            return result.ToList();
+        }
+
+        public void UpdateProductCategory(ProductCategory productCategory)
+        {
+            db.ProductCategories.AddOrUpdate(productCategory);
+            db.SaveChanges();
+        }
+
+        public void AddProductCategory(ProductCategory productCategory)
+        {
+            db.ProductCategories.Add(productCategory);
+            db.SaveChanges();
         }
     }
 }

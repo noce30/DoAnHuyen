@@ -60,6 +60,7 @@ namespace ShopOnline.Controllers
             var model = new ProductCategoryModel();
             model.Id = productCategory.ID;
             model.Name = productCategory.Name;
+            model.ImageURL = productCategory.ImagePath;
 
             return model;
         }

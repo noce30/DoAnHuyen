@@ -21,20 +21,20 @@ namespace DB.DAO
             return entity.ID;
         }
 
-        public bool Login(string userName, string passWord)
+            public bool Login(string userName, string passWord)
         {
-            var result = db.Users.FirstOrDefault(x => x.UserName == userName && x.PassWord == passWord
-                                                      && (x.Status.HasValue || x.Status.HasValue && x.Status.Value));
-            if (result != null)
-            {
-                return true;
-            }
-            else
+            var result = db.Users.FirstOrDefault(m => m.UserName == userName && m.PassWord == passWord && 
+            (m.Status.HasValue || m.Status.HasValue && m.Status.Value));
+            if(result ==null)
             {
                 return false;
             }
+            else
+            {
+                return true;
+            }
         }
-
+        
         public bool CheckUserExist (string userName)
         {
             var user = db.Users.FirstOrDefault(x => x.UserName.Equals(userName));

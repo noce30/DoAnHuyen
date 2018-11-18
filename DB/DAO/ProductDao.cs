@@ -26,5 +26,16 @@ namespace DB.DAO
             var result = db.Products.Where(x => x.CategoryID == categoryId && x.Status).ToList();
             return result;
         }
+
+        public List<Product> GetAll(string search)
+        {
+            var result = db.Products.ToList();
+            if(search != "")
+            {
+                result = result.Where(x => x.Name.ToLower().Contains(search.ToLower())).ToList();
+            }
+
+            return result;
+        }
     }
 }

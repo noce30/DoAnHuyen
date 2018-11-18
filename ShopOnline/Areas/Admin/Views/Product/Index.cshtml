@@ -1,0 +1,65 @@
+﻿@using ShopOnline.Areas.Admin.Models
+@model List<ProductModel>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-5">
+                Sản phẩm
+            </div>
+            <div class="col-md-3">
+                @using (Html.BeginForm())
+                {
+                    <div class="input-group custom-search-form">
+                        <input type="text" name="keySearch" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                }
+            </div>
+
+            <div class="col-md-3">
+                <a href="@Url.Action("AddCategory")" class="btn btn-danger">Thêm sản phẩm</a>
+            </div>
+        </div>
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price (VND)</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="">
+                            <td><img class="img-thumbnail" style="width: 70px; height: 70px;" src="@item.ImageURL" /></td>
+                            <td>@item.Name</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.Price</td>
+                            <td>@(!item.Status ? "Không hoạt động" : "Hoạt động")</td>
+                            <td>
+                                <a href="@Url.Action("EditProduct")" class="btn btn-success btn-mini">Edit</a>
+                                <a href="" class="btn btn-danger btn-mini">Delete</a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+

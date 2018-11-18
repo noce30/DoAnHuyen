@@ -4,7 +4,7 @@ namespace DB.DAO
 {
     public class ContactDao
     {
-        ShopOnlineContext db = null;
+        ShopOnlineContext db = null; 
         public ContactDao()
         {
             db = new ShopOnlineContext();

@@ -1,0 +1,47 @@
+﻿<div class="panel panel-primary">
+    <div class="panel panel-heading">
+        <h4>Chỉnh sửa sản phẩm</h4>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("EditCategory", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-1">
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Tên Sản phẩm</label>
+                       <input class="form-control"/>
+                    </div>
+                   
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Chọn hình</label>
+                        <input type="file" name="file" id="file" accept="image/x-png,image/gif,image/jpeg">
+                        
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Giá sản phẩm</label>
+                        <input class="form-control" min="0" type="number" />
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Danh mục sản phẩm</label>
+                        <select class="form-control">
+                            <option>123123</option>
+                            <option>123123</option>
+                        </select>
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Mô tả</label>
+                        <textarea class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="form-group has-success">
+                        <label class="control-label" for="inputSuccess">Trạng thái</label>
+                        <input type="checkbox"/>
+                    </div>
+                    <div class="form-group has-success">
+                        <input type="submit" value="Save" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

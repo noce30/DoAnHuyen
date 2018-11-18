@@ -15,16 +15,16 @@ namespace ShopOnline.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult Index(LoginModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var userDao = new UserDao();
-                if(userDao.Login(model.UserName, model.Password))
+                if (userDao.Login(model.UserName, model.Password))
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
                 else
                 {
