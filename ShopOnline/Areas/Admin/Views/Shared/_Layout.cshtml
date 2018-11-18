@@ -17,6 +17,8 @@
     <link href="~/Content/SBAdmin/vendor/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="~/Content/SBAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -56,9 +58,8 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="@Url.Action("Index","Product",new { area="admin"})"><i class="fa fa-calendar-times-o fa-fw"></i> Quản lí sản phẩm</a>
                         </li>
-
                         <li>
                             <a href="tables.html"><i class="fa fa-user fa-fw"></i> Quản lí người dùng</a>
                         </li>
@@ -67,9 +68,6 @@
                         </li>
                         <li>
                             <a href="@Url.Action("Index","ProductCategory",new { area="admin"})"><i class="fa fa-product-hunt fa-fw"></i> Quản lí danh mục sản phẩm</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Product",new { area="admin"})"><i class="fa fa-calendar-times-o fa-fw"></i> Quản lí sản phẩm</a>
                         </li>
                     </ul>
                 </div>

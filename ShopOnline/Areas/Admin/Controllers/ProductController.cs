@@ -1,6 +1,7 @@
 ﻿using DB.DAO;
 using DB.EF;
 using ShopOnline.Areas.Admin.Models;
+using ShopOnline.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,16 +34,14 @@ namespace ShopOnline.Areas.Admin.Controllers
 
         public ActionResult EditProduct(int id)
         {
-            if(id > 0)
+            if (id > 0)
             {
                 ProductDao productDao = new ProductDao();
-                ProductCategoryDao pcDao = new ProductCategoryDao();
                 var product = productDao.GetProductById(id);
-                if(product !=null)
+                if (product != null)
                 {
                     var model = mapProductToProductModel(product);
-                    var categories = pcDao.GetAllProductCategories();
-                    model.Categories = prepareCategories(categories);
+                    model.Categories = getCategoriesSelectList(product.CategoryID);
                     return View(model);
                 }
                 return RedirectToAction("Index");
@@ -51,10 +50,92 @@ namespace ShopOnline.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProduct(ProductModel model)
+        public ActionResult EditProduct(ProductModel model, HttpPostedFileBase file)
         {
+            if (ModelState.IsValid)
+            {
+                ProductDao pcDao = new ProductDao();
+                var product = pcDao.GetProductById(model.Id);
+                product.Name = model.Name;
+                product.Status = model.Status;
+                product.CategoryID = model.CategoryId;
+                product.Descriptions = model.Descriptions;
+                product.Price = model.Price;
+                product.ModifiedDate = DateTime.Now;
+                product.ModifiedBy = Constants.Admin;
+
+                if (file != null)
+                {
+                    string fileName = System.IO.Path.GetFileName(file.FileName);
+                    var filePath = "/Content/Images/" + fileName;
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                    file.SaveAs(path);
+                    model.ImageURL = filePath;
+                    product.Image = model.ImageURL;
+                }
+
+                pcDao.UpdateProduct(product);
+
+                return RedirectToAction("Index");
+            }
+
+            model.Categories = getCategoriesSelectList(model.CategoryId);
+            return View(model);
+        }
+
+        public ActionResult AddProduct()
+        {
+            var model = new ProductModel();
+            model.Categories = getCategoriesSelectList(0);
+            model.Status = true;
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(ProductModel model, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                var productDao = new ProductDao();
+                var product = new Product();
+                product.Name = model.Name;
+                product.Status = model.Status;
+                product.CategoryID = model.CategoryId;
+                product.Descriptions = model.Descriptions;
+                product.Price = model.Price;
+                product.CreateDate = DateTime.Now;
+                product.CreateBy = Constants.Admin;
+
+                if (file != null)
+                {
+                    string fileName = System.IO.Path.GetFileName(file.FileName);
+                    var filePath = "/Content/Images/" + fileName;
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                    file.SaveAs(path);
+                    model.ImageURL = filePath;
+                    product.Image = model.ImageURL;
+                }
+
+                productDao.AddProduct(product);
+
+                return RedirectToAction("Index");
+            }
+
+            model.Categories = getCategoriesSelectList(0);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteProduct(int productId)
+        {
+            var productDao = new ProductDao();
+            var product = productDao.GetProductById(productId);
+            if(product!=null)
+            {
+                productDao.DeleteProduct(product);
+            }
+            return RedirectToAction("Index");
         }
 
         private ProductModel mapProductToProductModel(Product product)
@@ -64,24 +145,24 @@ namespace ShopOnline.Areas.Admin.Controllers
             model.Name = product.Name;
             model.Price = product.Price.HasValue ? product.Price.Value : 0;
             model.Descriptions = product.Descriptions;
+            model.CategoryId = product.CategoryID;
             model.Status = product.Status;
             model.ImageURL = product.Image;
 
             return model;
         }
 
-        private List<ProductCategoryModel> prepareCategories(List<ProductCategory> categories)
+        private IEnumerable<SelectListItem> getCategoriesSelectList(long categoryId)
         {
-            var model = new List<ProductCategoryModel>();
-            foreach (var item in categories)
-            {
-                var modelItem = new ProductCategoryModel();
-                modelItem.Id = item.ID;
-                modelItem.Name = item.Name;
-                model.Add(modelItem);
-            }
-
-            return model;
+            ProductCategoryDao pcDao = new ProductCategoryDao();
+            var categories = pcDao.GetAllProductCategories();
+            return categories.Select(x =>
+                                  new SelectListItem()
+                                  {
+                                      Text = x.Name,
+                                      Value = x.ID.ToString(),
+                                      Selected = x.ID == categoryId
+                                  });
         }
     }
 }

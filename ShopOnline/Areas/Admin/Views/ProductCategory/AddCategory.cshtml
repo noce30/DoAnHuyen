@@ -6,7 +6,7 @@
         <h4>Thêm danh mục sản phẩm</h4>
     </div>
     <div class="panel-body">
-        @using (Html.BeginForm("AddCategory", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("AddCategory", "ProductCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.HiddenFor(x => x.Id)
             <div class="row">

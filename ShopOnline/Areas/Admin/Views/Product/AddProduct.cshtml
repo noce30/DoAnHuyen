@@ -3,10 +3,10 @@
 
 <div class="panel panel-primary">
     <div class="panel panel-heading">
-        <h4>Chỉnh sửa sản phẩm</h4>
+        <h4>Thêm sản phẩm</h4>
     </div>
     <div class="panel-body">
-        @using (Html.BeginForm("EditProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.HiddenFor(x => x.Id)
             <div class="row">
@@ -20,9 +20,6 @@
                     <div class="form-group has-success">
                         <label class="control-label" for="inputSuccess">Chọn hình</label>
                         <input type="file" name="file" id="file" accept="image/x-png,image/gif,image/jpeg">
-                    </div>
-                    <div class="form-group has-success">
-                        <img src="@Model.ImageURL" style="width: 200px" class="img-thumbnail" />
                     </div>
                     <div class="form-group has-success">
                         <label class="required">Giá sản phẩm</label>
@@ -44,10 +41,11 @@
                         @Html.CheckBoxFor(x => x.Status)
                     </div>
                     <div class="form-group has-success">
-                        <input type="submit" value="Lưu" class="btn btn-primary">
+                        <input type="submit" value="Thêm" class="btn btn-primary">
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+
